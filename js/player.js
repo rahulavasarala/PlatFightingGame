@@ -14,6 +14,8 @@ function Player(x, y) {
     this.jumpAction = false;
     this.doubleJumpCount = 1;
 
+    //this is a comment
+
     this.step = function() {
         if(this.jumpFreeze > 0) {
             if(upKey) {
