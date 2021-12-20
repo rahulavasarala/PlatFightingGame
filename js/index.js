@@ -2,30 +2,53 @@ var canvas;
 var ctx; 
 var gameLoop;
 var player;
-var upKey;
-var downKey;
-var leftKey;
-var rightKey;
 var platformArray;
+
+/**
+ * over here, i wanna make all the buttons that are going to be watched and inputted into
+ * the buttonAccordion, which will then be put in the player
+ * 
+ * 
+ * buttonW
+ * buttonA
+ * buttonS
+ * buttonD
+ * ...
+ */
+
+var wButton;
+var aButton;
+var sButton;
+var dButton;
 
 window.onload = function() {
     canvas = document.getElementById("game-canvas");
     ctx = canvas.getContext("2d");
+
+    wButton = new GameButton();
+    aButton = new GameButton();
+    sButton = new GameButton();
+    dButton = new GameButton();
+
     setInputs();
 
-    player = new Player(1,1);
+    var p1ButtonAccordion = new ButtonAccordion(wButton, sButton, aButton, dButton);
 
-    //set the platforms in the platform array
-    platformArray = new Array(1);
-    platformArray[0] = new Platform(200, 900, 1920-400, 10);//got arrays to work... yay milestone
+    var p1StateMachine = new StateMachine();
+    p1StateMachine.initializeStateArray();
+
+    player = new Player(1,1, p1ButtonAccordion, p1StateMachine);
+
+    platformArray = [new Platform(200, 900, 1920-400, 10, false)];
    
-
     //create the gameloop
     gameLoop = setInterval(step, 1000/60);
 }
 
 function step() {
     player.step();
+
+
     draw();
 }
 
@@ -43,26 +66,26 @@ function draw() {
 function setInputs() {
     document.addEventListener("keydown", function(event) {
         if(event.key === "w") {
-            upKey = true;
+            wButton.press();
         }else if(event.key === "a") {
-            leftKey = true;
+            aButton.press();
         }else if(event.key === "s") {
-            downKey = true;
+            sButton.press();
         }else if(event.key === "d") {
-            rightKey = true; 
+            dButton.press();
         }
     
     });
 
     document.addEventListener("keyup", function(event) {
         if(event.key === "w") {
-            upKey = false;
+            wButton.release();
         }else if(event.key === "a") {
-            leftKey = false;
+            aButton.release();
         }else if(event.key === "s") {
-            downKey = false;
+            sButton.release();
         }else if(event.key === "d") {
-            rightKey = false; 
+            dButton.release();
         }
     
     });
