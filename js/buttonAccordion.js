@@ -1,4 +1,4 @@
-function ButtonAccordion(up, down, left ,right) {
+function ButtonAccordion(up, down, left ,right, shield) {
 
     /**
      * ideally we need an array to store all the elements, call it button list
@@ -7,11 +7,13 @@ function ButtonAccordion(up, down, left ,right) {
      * chosen for the game. Pretty modular
      */
 
-    this.buttonList = new Array(4);
-    this.buttonList[0] = up;
-    this.buttonList[1] = down;
-    this.buttonList[2] = left;
-    this.buttonList[3] = right;
+    this.buttonList = [];
+    this.buttonList.push(up);
+    this.buttonList.push(down);
+    this.buttonList.push(left);
+    this.buttonList.push(right);
+    this.buttonList.push(shield);
+    
 
 
 
@@ -31,6 +33,8 @@ function ButtonAccordion(up, down, left ,right) {
             return 2;
         }else if(buttonName == "right") {
             return 3;
+        }else if(buttonName == "shield") {
+            return 4;
         }else {
             return -1;
         }

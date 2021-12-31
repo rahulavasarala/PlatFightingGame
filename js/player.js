@@ -30,6 +30,7 @@ function Player(x, y, accordionIn, stateMachine) {
     this.isGrounded = false;
     this.accordion = accordionIn;  //just updated each step at the beginning
     this.gravity = 0.01;
+    this.shield = new Shield();
    
     /**
      * this function is where all the other elementary functions are going to be called
@@ -46,6 +47,21 @@ function Player(x, y, accordionIn, stateMachine) {
             this.ySpeed = 0;
         }else {
             this.isGrounded = false;
+        }
+
+        //check shield
+        if(this.stateMachine.currentState.stateName == "shield") {//code shield breaker too
+            //deplete the shield
+            if(this.shield.size > 0) {
+                this.shield.size -= .1;
+            }
+            console.log("Shield Size: " + this.shield.size);
+        }else {
+            //recover the shield
+
+            if(this.shield.size < 50) {
+                this.shield.size++;
+            }
         }
 
         //first set the speed and animation and the other things to whatever the currentFrame in the state machine points too
@@ -175,8 +191,21 @@ function Player(x, y, accordionIn, stateMachine) {
 
 
     this.draw = function() {
-        ctx.fillStyle = "blue";
+        if(this.stateMachine.currentState.stateName == "ss") {
+            ctx.fillStyle = "yellow";
+        }else {
+            ctx.fillStyle = "blue";
+        }
+       
         ctx.fillRect(this.xPos,this.yPos, this.width, this.height);
+
+        if(this.stateMachine.currentState.stateName == "shield") {
+            ctx.fillStyle = "red";
+            var xMargin = (this.width - this.shield.size)/2;
+            var yMargin = (this.height - this.shield.size)/2;
+
+            ctx.fillRect(this.xPos + xMargin,this.yPos + yMargin, this.shield.size, this.shield.size);
+        }
     }
 
     this.timelineFetcher = function(frame, dataTimeline) {
@@ -272,6 +301,8 @@ function Player(x, y, accordionIn, stateMachine) {
             return this.accordion.getStatus(event) == sign;
         }else if(event == "isGrounded") {
             return this.isGrounded == sign;
+        }else if(event == "ss") {
+            return this.shield.size <= 0;
         }else  {
             return false; 
         }
@@ -303,3 +334,40 @@ function Player(x, y, accordionIn, stateMachine) {
 
 
 }
+
+/**---created the shield state
+ * next thing to do is create a sandbag
+ * 
+ * then create the attack state- figure out objects and figure out the inheritance
+ * 
+ *  
+ * 
+ * ecb box
+ * 
+ * the ideal way to make characters is to extend them from player and then add specific code for them in the step function
+ * and create their own state machines obviously
+ * 
+ * create a sentient being called the game, that monitors ecb collisions and the hitbox collisions. 
+ * 
+ * 
+ * so what is an ecb box- 
+ * 
+ * it is an object with 4 points that make a box around the character and are localized through the characters x y position
+ * 
+ * we need to make a function of the form player(platform) which checks to see whether the ecb box of the player will touch the platform and whether it is worthy 
+ * of invoking a position/ speed change/ isGrounded call
+ * 
+ * isGrounded should be a boolean, and touching Plat is a platform
+ * 
+ * for platform stops- if the speed is negative and down is not being held on shield drop plat ------- or normal platform ------all with the condition that there is a point intersection
+ * then teleport to the top of the ecb
+ * 
+ * for platform slides-- check whether the platform is solid, and find the intersection coordinate with the top bar, and translate that distance -- covers all cases
+ * 
+ * then code player ecb collisions- if two players ecb boxes are touching, then whoever is hit slides back and the characters 
+ * 
+ * point under line calculator
+ * 
+ * 
+ * limitations of normal rectangular ecb- cant slide down plats
+ */

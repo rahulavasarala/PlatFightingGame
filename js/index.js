@@ -20,6 +20,7 @@ var wButton;
 var aButton;
 var sButton;
 var dButton;
+var gButton;
 
 window.onload = function() {
     canvas = document.getElementById("game-canvas");
@@ -29,10 +30,11 @@ window.onload = function() {
     aButton = new GameButton();
     sButton = new GameButton();
     dButton = new GameButton();
+    gButton = new GameButton();
 
     setInputs();
 
-    var p1ButtonAccordion = new ButtonAccordion(wButton, sButton, aButton, dButton);
+    var p1ButtonAccordion = new ButtonAccordion(wButton, sButton, aButton, dButton, gButton);
 
     var p1StateMachine = new StateMachine();
     p1StateMachine.initializeStateArray();
@@ -73,6 +75,8 @@ function setInputs() {
             sButton.press();
         }else if(event.key === "d") {
             dButton.press();
+        }else if(event.key === "g") {
+            gButton.press();
         }
     
     });
@@ -86,6 +90,8 @@ function setInputs() {
             sButton.release();
         }else if(event.key === "d") {
             dButton.release();
+        }else if(event.key === "g") {
+            gButton.release();
         }
     
     });

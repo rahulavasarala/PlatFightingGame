@@ -1,9 +1,9 @@
-function Platform(x, y, width, height, sheildDrop) {
+function Platform(x, y, width, height, solid) {
     this.xPos = x;
     this.yPos = y;
     this.width = width;
     this.height = height;
-    this.sheildDrop = sheildDrop;
+    this.solid = solid;
 
     this.draw = function() {
         ctx.fillStyle = "blue";
