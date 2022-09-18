@@ -1,0 +1,23 @@
+<!DOCTYPE html> <!-- THis is the doctype-->
+<html lang="en">
+    <head>
+        <title> SuperSusBros </title>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <script src='app.js'></script>
+        <script src='charhandler.js'></script>
+        <script src='gamehandler.js'></script>
+    </head>
+    <body><!-- THis is the body where the fun happens-->
+        <div id="char_page" style="display:none">
+            <a href="#" onclick="toGame()"> (CharacterSelect -> Game)</a>
+            <canvas width = 500 height = 500 id = "character_select_canvas"></canvas>
+        </div>
+
+        <div id="game_page" style="display:none">
+            <a href="#" onclick="toCharacterSelect()"> (Game -> CharacterSelect)</a>
+            <canvas width = 500 height = 500 id = "game_canvas"></canvas>
+        </div>
+
+    </body>
+</html>
