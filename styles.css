@@ -1,0 +1,13 @@
+body {
+    text-align: center;
+    background-color: grey;
+}
+
+
+canvas {
+    border: 1px solid black;
+}
+
+/* This is one of the coolest things ever, you can decide how elements look like by picking and choosing them with
+
+a styles.css file */

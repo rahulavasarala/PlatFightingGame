@@ -1,0 +1,8 @@
+q1 = new QuadTree(new boundingBox(0, 500,0 ,500));
+
+g1 = new gameElement(40, 50, new boundingBox(0, 20, 0, 20));
+g2 = new gameElement(150, 200, new boundingBox(0, 20, 0, 20));
+g3 = new gameElement(300, 50, new boundingBox(0, 20, 0, 20));
+g4 = new gameElement(400, 200, new boundingBox(0, 20, 0, 20));
+
+q1.print();
