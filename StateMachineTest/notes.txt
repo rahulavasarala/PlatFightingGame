@@ -1,0 +1,111 @@
+state 1 propertylist------: xspeed: val, yspeed:val timeline, x.offset:val timeline, y.offset:val timeline , boundingbox:x, timeline
+
+invulnerability: timeline cancel_timeline----: button a, button b, c... timelines
+
+//all characters will have the same controls, so that could be in the base player
+
+//every player has a cancel timeline reader, and ever
+
+
+//timeline strategy, and cancel buttons as list strategy is good
+
+
+player has a property dict
+
+2. whatever state he is in, update the properties based on the currframe in state machine
+
+1. check if any of the cancel buttons are being clicked to change the state
+
+make cancel buttons have an on off function
+
+buffer system overries normal commands
+
+mario is in idle state
+
+idle state lasts for 7 frames and then loops
+
+Idle state is cancelable to anything, so the idle state cancel list is sides, up, down, a, b
+
+create a map of all the states
+
+freefall state is cancelable into 5 arials, so if down + a is clicked, then it is fast fall, if down + a is clicked then it is down air
+
+falco gets hitboxes in down arial
+
+state inheritance,can it have an attack state or not, we need to include this, base states just cancel and apply properties
+
+attack states have hitboxes
+hitboxes and their timelines
+
+make it so that you can minimize the amount of code for the states aka fast falling and falling
+
+
+fast falling and aerial drift fall into the same category that breaks the integrity of this logic
+
+you should have x mod and y mod for aerial drift
+
+-----------all of this logic is incomplete--------------------
+then you need a drift timeline
+
+In order to handle cases such as 1 state for input direction, you need to remember the input which caused the state cancel, 
+and the 
+
+or you have an event like isgrounded called opposite direction, have custom code to handle it, need a way to code these events
+In the cancel event list, you need to create events that are currently happening, for each one of these events, you need to update
+checking if is opposite
+
+having a state that is face dependent is a thing
+
+walking is a face dependent movement
+also backair is a face dependent movement
+
+2 events - same dir, and different dir
+
+state has property- state reverser- these are enough to dictate the change of direction and stuff of that nature
+
+
+--------------------------------------------------------------------------------
+player-
+
+property_dict
+
+event-dict
+
+cancel checker
+
+in move function() update event dict
+
+statemachine
+
+state_dict, 
+
+state
+
+turn around property
+
+back up link
+
+state is a dictionary itself
+
+
+player state interaction
+
+update the property dict
+
+player control interaciton
+
+update the events
+
+up, down, same direction, opposite direction
+
+all tilts are direction dependent, all attacks are direction dependent
+
+some moves cancel with more than one input, 
+
+since states are a dictionary, some will have a hitboxes section, inheritance will not be needed. 
+
+-------------------------------------------------------------------
+
+
+
+

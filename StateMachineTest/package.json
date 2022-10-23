@@ -1,0 +1,12 @@
+{
+  "name": "statemachinetest",
+  "version": "1.0.0",
+  "description": "State machine shit nah mean",
+  "main": "button_accordion.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module"
+}
