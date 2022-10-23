@@ -1,0 +1,2 @@
+This is the state machine test! Got a simple programmable state machine structure to work. Some potential things I could do is create a UI to create
+state machines so everyone can design their own characters with their own properties. Need to makea buffer system, which will be extremely fun! 
